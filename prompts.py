@@ -3,15 +3,27 @@
 def get_research_prompt(question, field):
     return {
         "role": "user",
-        "content": f"The user is asking a research-related question. Explain the topic '{question}' within the field of '{field}' in a concise, clear, and informative way. "
-                   f"Limit your response to essential information and do not provide too much detail. Your role is to help with research-related topics only.",
+        "content": f"""
+        The user is asking a question related to the field '{field}'.
+        Is this question research-related? If it is, explain the topic '{question}' clearly,
+        focusing on important concepts, recent advancements, and potential research directions.
+        If the question is not related to research, reply that the question doesn't fit the research criteria
+        and suggest research-related topics.
+        """
     }
 
 def get_guidance_prompt(question, field):
-    return (f"To help you explore the research question '{question}' in the field of '{field}', start with a broad understanding of key concepts. "
-            "Then, identify gaps or specific questions worth investigating further. Always cross-check sources and stay focused on research literature. "
-            "If experiments or projects are needed, ensure you plan them systematically and document your findings.")
+    return f"""
+    To help you explore the research question '{question}' in the field of '{field}', I suggest starting
+    with a broad literature review. Identify key papers and influential research in this area. 
+    Then, explore open challenges or gaps that your question might address. 
+    Focus on gathering sources that are peer-reviewed and relevant to your specific research interest. 
+    Formulate experiments or approaches to investigate the research problem.
+    """
 
 def invalid_question_prompt():
-    return ("You are an AI research assistant and should only assist with research-related queries. "
-            "If the question is not related to research (e.g., cooking recipes, politics, or other non-research topics), respond politely that you only assist with research.")
+    return """
+    This question doesn't appear to be research-related. Please ask questions that align with research topics
+    such as theories, methodologies, or advancements in the field. You could ask about current trends, 
+    innovations, or key challenges in research fields like AI or Data Science.
+    """
