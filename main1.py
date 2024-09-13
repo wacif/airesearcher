@@ -5,7 +5,7 @@ from scholarly import scholarly
 from prompts import get_research_prompt, get_guidance_prompt, invalid_question_prompt
 
 # Set up Groq client
-os.environ["GROQ_API_KEY"] = "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"
+
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 # Streamlit UI Enhancements
